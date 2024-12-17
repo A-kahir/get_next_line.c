@@ -6,11 +6,16 @@
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 21:22:53 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/17 21:12:44 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/17 21:37:58 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void leaksDetector()
+{
+   system("leaks a.out");
+}
 
 static	char	*func_read(int fd)
 {
@@ -77,21 +82,18 @@ char	*get_next_line(int fd)
     return (line);
 }
 
-
 int main()
 {
     int fd = open("file.txt", O_RDONLY);
     
+    atexit(leaksDetector);
     char *str1 = get_next_line(fd);
     char *str2 = get_next_line(fd);
 
+
     printf("%s\n", str1);
-    printf("%s\n", str2);
-
-
     free(str1);
-    free(str2);
 
-    
-    close(fd);
+    printf("%s\n", str2);
+    free(str2);
 }
