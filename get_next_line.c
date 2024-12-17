@@ -6,7 +6,7 @@
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 21:22:53 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/17 20:43:37 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/17 21:12:44 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*get_next_line(int fd)
         free(str);
         str = NULL;
     }
-    return line;
+    return (line);
 }
 
 
@@ -84,15 +84,14 @@ int main()
     
     char *str1 = get_next_line(fd);
     char *str2 = get_next_line(fd);
-    char *str3 = get_next_line(fd);
 
     printf("%s\n", str1);
-    free(str1);
-
     printf("%s\n", str2);
+
+
+    free(str1);
     free(str2);
 
-    printf("%s\n", str3);
-    free(str3);
+    
     close(fd);
 }
