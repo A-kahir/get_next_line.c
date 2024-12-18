@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*    get_next_line_utils.c                             :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:09:40 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/17 20:16:12 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/18 15:15:14 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*ft_strdup(char *s1)
 	int		i;
 
 	len = ft_strlen(s1);
-	ptr = malloc((len + 1));
+	ptr = malloc(((len + 2) * sizeof(char)));
 	if (ptr == NULL)
 	{
 		return (NULL);

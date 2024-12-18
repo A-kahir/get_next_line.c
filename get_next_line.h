@@ -6,7 +6,7 @@
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:09:30 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/17 20:35:44 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/18 15:11:15 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 5
+# define BUFFER_SIZE 555
 #endif
 
 #include <fcntl.h>

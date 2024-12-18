@@ -6,7 +6,7 @@
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 21:22:53 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/18 14:18:23 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/18 15:48:45 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static char *continue_rd(char *str, int fd)
     int     rd;
     char    *temp;
 
+    if (!str)
+        str = func_read(fd);
     while ((rd = read(fd, buff, BUFFER_SIZE)) > 0)
     {
         buff[rd] = '\0';
@@ -53,31 +55,37 @@ static char *continue_rd(char *str, int fd)
     return (str);
 }
 
+void ft_free(char **str)
+{
+    free(*str);
+    *str = NULL;
+}
+
 char	*get_next_line(int fd)
 {
     static char *str;
     char        *line;
     char        *newline_pos;
+    char        *temp;
 
     if (fd < 0 || BUFFER_SIZE <= 0)
-        return NULL;
-    if (!str)
-        str = func_read(fd);
+        return (NULL);
     str = continue_rd(str, fd);
     if (str == NULL || *str == '\0')
-        return NULL;
+        return (NULL);
     newline_pos = ft_strchr(str, '\n');
     if (newline_pos)
     {
         *newline_pos = '\0';
         line = ft_strdup(str);
-        str = ft_strdup(newline_pos + 1);
+        temp = ft_strdup(newline_pos + 1);
+        free(str);
+        str = temp;
     }
     else
     {
         line = ft_strdup(str);
-        free(str);
-        str = NULL;
+        ft_free(&str);
     }
     return (line);
 }
