@@ -6,7 +6,7 @@
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 21:22:53 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/18 15:48:45 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/18 20:14:12 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ char	*get_next_line(int fd)
     if (newline_pos)
     {
         *newline_pos = '\0';
+        printf("\n newline_pos==> %s\n", newline_pos);
         line = ft_strdup(str);
         temp = ft_strdup(newline_pos + 1);
         free(str);
