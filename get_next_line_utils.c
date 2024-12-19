@@ -6,7 +6,7 @@
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:09:40 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/19 14:33:11 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/19 17:18:00 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,69 +69,26 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (ptr);
 }
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	char		*dest;
-	const char	*source;
-	size_t		i;
-
-	if (!dst && !src)
-	{
-		return (NULL);
-	}
-	if (dst == src)
-	{
-		return (dst);
-	}
-	dest = (char *)dst;
-	source = (const char *)src;
-	i = 0;
-	while (i < n)
-	{
-		dest[i] = source[i];
-		i++;
-	}
-	return (dst);
-}
-
 char	*ft_strdup(char *s1)
 {
 	char	*ptr;
 	size_t		len;
+	size_t		i;
 
+	if (!s1)
+		return (NULL);
 	len = ft_strlen(s1);
-		ptr = malloc(((len + 1) * sizeof(char)));
+	ptr = malloc((len + 1) * sizeof(char));
 	if (ptr == NULL)
 	{
 		return (NULL);
 	}
-	ft_memcpy(ptr, s1, len);
-	ptr[len] = '\0';
+	i = 0;
+	while (i < len)
+	{
+		ptr[i] = s1[i];
+		i++;
+	}
+	ptr[i] = '\0';
 	return (ptr);
-}
-
-char	*ft_strcpy(char *dest, const char *src)
-{
-    int i = 0;
-    while (src[i] != '\0') {
-        dest[i] = src[i];
-        i++;
-    }
-    dest[i] = '\0';
-    return (dest);
-}
-
-char *ft_strcat(char *dest, const char *src)
-{
-    int i = 0;
-    while (dest[i] != '\0') {
-        i++;
-    }
-    int j = 0;
-    while (src[j] != '\0') {
-        dest[i + j] = src[j];
-        j++;
-    }
-    dest[i + j] = '\0';
-    return dest;
 }
