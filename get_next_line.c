@@ -6,7 +6,7 @@
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 21:22:53 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/18 21:52:42 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/19 14:29:36 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,38 +17,30 @@
 //    system("leaks a.out");
 // }
 
-static	char	*func_read(int fd)
-{
-    char	*Buff;
-    int		read_byt;
-    
-    Buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-    if (Buff == NULL)
-        return (NULL);
-    read_byt = read(fd, Buff, BUFFER_SIZE);
-    if (read_byt <= 0)
-    {
-        free(Buff);
-        return (NULL);
-    }
-    Buff[read_byt] = '\0';
-    return (Buff);
-}
-
 static char *continue_rd(char *str, int fd)
 {
     char    buff[BUFFER_SIZE + 1];
     int     rd;
     char    *temp;
-
-    if (!str)
-        str = func_read(fd);
-    while ((rd = read(fd, buff, BUFFER_SIZE)) > 0)
+    
+    rd = 1;
+    while (rd > 0)
     {
+        rd = read(fd, buff, BUFFER_SIZE);
+        if (rd == -1)
+        {
+            free(str);
+            return( NULL);
+        }
         buff[rd] = '\0';
-        temp = ft_strjoin(str, buff);
-        free(str);
-        str = temp;
+        if (!str)
+            str = ft_strdup(buff);
+        else
+        {
+            temp = ft_strjoin(str, buff);
+            free(str);
+            str = temp;
+        }
         if (ft_strchr(str, '\n'))
             break;
     }
@@ -67,12 +59,16 @@ char	*get_next_line(int fd)
     char        *line;
     char        *newline_pos;
     char        *temp;
+    char        *temp_line;
 
-    if (fd < 0 || BUFFER_SIZE <= 0)
+    if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
         return (NULL);
     str = continue_rd(str, fd);
-    if (str == NULL || *str == '\0')
+    if (str == NULL|| *str == '\0')
+    {
+        ft_free(&str);
         return (NULL);
+    }
     newline_pos = ft_strchr(str, '\n');
     if (newline_pos)
     {
@@ -81,6 +77,9 @@ char	*get_next_line(int fd)
         temp = ft_strdup(newline_pos + 1);
         free(str);
         str = temp;
+        temp_line = ft_strjoin(line, "\n");
+        free(line);
+        line = temp_line;
     }
     else
     {
@@ -89,15 +88,15 @@ char	*get_next_line(int fd)
     }
     return (line);
 }
-int main()
-{
-    int fd = open("file.txt", O_RDONLY);
+// int main()
+// {
+//     int fd = open("file.txt", O_RDONLY);
     
-    // atexit(leaksDetector);
-    char *str1;
-    while ((str1 = get_next_line(fd)) != NULL)
-    {
-        printf("%s\n", str1);
-        free(str1);
-    }
-}
+//     // atexit(leaksDetector);
+//     char *str1;
+//     while ((str1 = get_next_line(fd)) != NULL)
+//     {
+//         printf("%s\n", str1);
+//         free(str1);
+//     }
+// }

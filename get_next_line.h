@@ -6,7 +6,7 @@
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:09:30 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/18 21:52:24 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/19 14:18:11 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *s1);
 char	*ft_strcpy(char *dest, const char *src);
 char *ft_strcat(char *dest, const char *src);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 # endif
