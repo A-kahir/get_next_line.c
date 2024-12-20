@@ -6,12 +6,12 @@
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:12:25 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/20 13:47:33 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/20 18:10:56 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS
-# define GET_NEXT_LINE_BONUS
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 33

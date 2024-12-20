@@ -6,20 +6,11 @@
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:12:09 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/20 13:34:52 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/20 18:28:03 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
-void ft_free(char **str)
-{
-    if (*str)
-    {
-        free(*str);
-        *str = NULL;
-    }
-}
 
 static char *continue_rd(char *str, int fd)
 {
@@ -29,13 +20,13 @@ static char *continue_rd(char *str, int fd)
     
     buff = malloc((size_t)BUFFER_SIZE + 1);
     if (buff == NULL)
-        return(ft_free(&str), NULL);
+        return(free(str), str = NULL, NULL);
     rd = 1;
     while (rd > 0)
     {
         rd = read(fd, buff, BUFFER_SIZE);
         if (rd == -1)
-            return (free(buff), ft_free(&str), NULL);
+            return (free(buff), free(str), str = NULL, NULL);
         if (rd == 0)
             break;
         buff[rd] = '\0';
@@ -66,10 +57,10 @@ char	*get_next_line(int fd)
     char        *temp;
 
     if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-        return (ft_free(&str[fd]), NULL);
+        return (free(str[fd]), str[fd] = NULL, NULL);
     str[fd] = continue_rd(str[fd], fd);
     if (str[fd] == NULL|| *str[fd] == '\0')
-        return (ft_free(&str[fd]), NULL);
+        return (free(str[fd]), str[fd] = NULL, NULL);
     newline_pos = ft_strchr(str[fd], '\n');
     if (newline_pos)
     {
@@ -77,19 +68,20 @@ char	*get_next_line(int fd)
         line = ft_strdup(str[fd]);
         temp = ft_strdup(newline_pos + 1);
 		if (line == NULL || temp == NULL)
-			return (ft_free(&str[fd]), free(line), free(temp),NULL);
+			return (free(str[fd]), str[fd] = NULL, free(line), free(temp),NULL);
         free(str[fd]);
         str[fd] = temp;
         temp = ft_strjoin(line, "\n");
         free(line);
 		if (temp == NULL)
-			return (ft_free(&str[fd]), NULL);
+			return (free(str[fd]), str[fd] = NULL, NULL);
         line = temp;
     }
     else
     {
         line = ft_strdup(str[fd]);
-        ft_free(&str[fd]);
+        free(str[fd]);
+        str[fd] = NULL;
     }
     return (line);
 }

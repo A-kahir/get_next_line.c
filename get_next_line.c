@@ -6,7 +6,7 @@
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 21:22:53 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/20 17:26:19 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/20 18:10:12 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,39 +53,45 @@ static	char	*continue_rd(char *str, int fd)
 	return (str);
 }
 
+static char	*extract_and_update(char *newline_pos, char **str, char **line)
+{
+	char	*temp;
+
+	if (newline_pos)
+	{
+		*newline_pos = '\0';
+		*line = ft_strdup(*str);
+		temp = ft_strdup(newline_pos + 1);
+		if (!(*line) || !temp)
+			return (free(*str), *str = NULL, free(*line), free(temp), NULL);
+		free(*str);
+		*str = temp;
+		temp = ft_strjoin(*line, "\n");
+		free(*line);
+		if (temp == NULL)
+			return (free(*str), *str = NULL, NULL);
+		*line = temp;
+	}
+	else
+	{
+		*line = ft_strdup(*str);
+		free(*str);
+		*str = NULL;
+	}
+	return (*line);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*str;
 	char		*line;
 	char		*newline_pos;
-	char		*temp;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (free(str), str = NULL, NULL);
 	str = continue_rd(str, fd);
-	if (str == NULL || *str == '\0')
+	if (!str || *str == '\0')
 		return (free(str), str = NULL, NULL);
 	newline_pos = ft_strchr(str, '\n');
-	if (newline_pos)
-	{
-		*newline_pos = '\0';
-		line = ft_strdup(str);
-		temp = ft_strdup(newline_pos + 1);
-		if (line == NULL || temp == NULL)
-			return (free(str), str = NULL, free(line), free(temp), NULL);
-		free(str);
-		str = temp;
-		temp = ft_strjoin(line, "\n");
-		free(line);
-		if (temp == NULL)
-			return (free(str), str = NULL, NULL);
-		line = temp;
-	}
-	else
-	{
-		line = ft_strdup(str);
-		free(str);
-		str = NULL;
-	}
-	return (line);
+	return (extract_and_update(newline_pos, &str, &line));
 }

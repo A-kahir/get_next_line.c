@@ -6,7 +6,7 @@
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:09:40 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/19 17:18:00 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/20 18:13:30 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-size_t ft_strlen(char *str)
+size_t	ft_strlen(char *str)
 {
-    size_t count;
+	size_t	count;
 
-    count = 0;
-    while (str[count] != '\0')
-    {
-        count++;
-    }
-    return (count);
+	count = 0;
+	while (str[count] != '\0')
+	{
+		count++;
+	}
+	return (count);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -72,8 +72,8 @@ char	*ft_strjoin(char *s1, char *s2)
 char	*ft_strdup(char *s1)
 {
 	char	*ptr;
-	size_t		len;
-	size_t		i;
+	size_t	len;
+	size_t	i;
 
 	if (!s1)
 		return (NULL);
