@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/15 14:55:53 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/15 14:56:56 by akahir           ###   ########.fr       */
+/*   Created: 2024/12/20 13:12:25 by akahir            #+#    #+#             */
+/*   Updated: 2024/12/20 13:47:33 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#ifndef GET_NEXT_LINE_BONUS
+# define GET_NEXT_LINE_BONUS
 
-int ft_strlen(char *str)
-{
-    int count;
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 33
+#endif
 
-    count = 0;
-    while (str[count] != '\0')
-    {
-        count++;
-    }
-    return (count);
-}
+#include <fcntl.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <libc.h>
+
+char	*get_next_line(int fd);
+char	*ft_strchr(const char *s, int c);
+size_t     ft_strlen(char *str);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strdup(char *s1);
+# endif

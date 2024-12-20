@@ -6,7 +6,7 @@
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:09:30 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/19 15:45:23 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/20 13:13:07 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 2147483647
+# define BUFFER_SIZE 5
 #endif
 
 #include <fcntl.h>
@@ -24,7 +24,6 @@
 #include <unistd.h>
 #include <libc.h>
 
-// Func :
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
 size_t     ft_strlen(char *str);
