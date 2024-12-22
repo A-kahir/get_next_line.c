@@ -6,7 +6,7 @@
 /*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:09:40 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/20 18:13:30 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/22 14:10:52 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,9 @@ char	*ft_strdup(char *s1)
 	if (!s1)
 		return (NULL);
 	len = ft_strlen(s1);
-	ptr = malloc((len + 1) * sizeof(char));
+	ptr = malloc((len + 1));
 	if (ptr == NULL)
-	{
 		return (NULL);
-	}
 	i = 0;
 	while (i < len)
 	{
