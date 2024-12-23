@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akahir <akahir@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: akahir <akahir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:12:25 by akahir            #+#    #+#             */
-/*   Updated: 2024/12/22 14:51:35 by akahir           ###   ########.fr       */
+/*   Updated: 2024/12/23 13:18:42 by akahir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,9 @@
 #  define BUFFER_SIZE 3
 # endif
 
-# include <fcntl.h>
-# include <string.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <libc.h>
+# include <limits.h>
 
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
