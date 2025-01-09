@@ -52,6 +52,7 @@ int main() {
     close(fd);  // Close the file
     return 0;
 }
+```
 📚 Resources
 GitHub Repository - mcombeau/get_next_line
 42 Documentation: get_next_line
@@ -62,13 +63,3 @@ For a more visual explanation, check out the following video:
 
 Get Next Line 42 | Part 1
 
-👨‍💻 Contributions
-Feel free to fork the repository and contribute improvements or fixes! If you have any issues or suggestions, open an issue or a pull request.
-
-📄 License
-This project is open source and available under the MIT License.
-
-sql
-Copy code
-
-You can copy and paste the above code directly into your **README.md** file.
