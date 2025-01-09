@@ -20,7 +20,7 @@ In this project, you will:
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/yourusername/get_next_line.git
+    git clone https://github.com/A-kahir/get_next_line.git
     cd get_next_line
     ```
 
